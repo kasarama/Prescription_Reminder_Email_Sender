@@ -1,7 +1,11 @@
 package cph.databases.assignment.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import cph.databases.assignment.entity.Handout;
+import cph.databases.assignment.service.HandoutService;
 import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
+import java.util.List;
 
 
 @CrossOrigin
@@ -9,16 +13,28 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/demo")
 public class Resource {
 
+    final
+    HandoutService handoutService;
 
-        @GetMapping("geturl")
-        public String get() {
-            return "That was a get request";
-        }
+    public Resource(HandoutService handoutService) {
+        this.handoutService = handoutService;
+    }
 
-        @PostMapping("posturl")
-        public String post( @RequestBody String msg) {
-            return "That was a post request with body: " + msg;
-        }
+    @GetMapping("geturl")
+    public String get() {
+        return "That was a get request";
+    }
+
+    @PostMapping("posturl")
+    public String post(@RequestBody String msg) {
+        return "That was a post request with body: " + msg;
+    }
+
+    @GetMapping
+    public List<Handout> handoutsOfPrescr(@PathParam("presc_id") Long id){
+        System.out.println("ID IS: "+id);
+        return handoutService.getHandoutsOfPrescription(id);
+    }
 
 
 }

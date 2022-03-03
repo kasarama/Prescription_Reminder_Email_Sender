@@ -1,7 +1,5 @@
 package cph.databases.assignment.entity;
 
-import cph.databases.assignment.repository.ModificationRepo;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;

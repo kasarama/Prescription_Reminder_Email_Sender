@@ -14,4 +14,6 @@ public interface PrescriptionRepo extends CrudRepository<Prescription, Long> {
 
     @Query("select p from Prescription p where p.remainingHandouts = ?1")
     List<Prescription> findPrescriptionWIthHandoutsLessThan(int handouts);
+
+
 }

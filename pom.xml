@@ -11,7 +11,7 @@
 	<!-- groupId: name of company, group or organization -->
 	<groupId>cph.databases</groupId>
 	<!-- artifactId: name of this project -->
-	<artifactId>assignment</artifactId>
+	<artifactId>email_sender</artifactId>
 	<!-- version: release version -->
 	<version>0.0.1-SNAPSHOT</version>
 	<name>prescription-reminder</name>

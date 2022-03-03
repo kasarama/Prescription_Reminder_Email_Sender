@@ -11,34 +11,31 @@ public class ContactInformation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     //@JoinColumn(name = "person_id", referencedColumnName = "cpr")
-    private Person pcpr;
+    private Person person;
 
     private String mail;
 
     private int phone;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "address_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address addr;
 
     // Constructors
     public ContactInformation() {
     }
 
-    public ContactInformation(Person pcpr, String mail, int phone, Address addr) {
-        this.pcpr = pcpr;
+    public ContactInformation(Person person, String mail, int phone, Address addr) {
+        this.person = person;
         this.mail = mail;
         this.phone = phone;
         this.addr = addr;
     }
 
-    public void setAddress(Address addr){
+    public void setAddress(Address addr) {
         this.addr = addr;
-        if(!addr.getCi().contains(this)) {
-            addr.addContact(this);
-        }
     }
 
     // Getters and setters
@@ -50,12 +47,12 @@ public class ContactInformation implements Serializable {
         this.id = id;
     }
 
-    public Person getPcpr() {
-        return pcpr;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPcpr(Person pcpr) {
-        this.pcpr = pcpr;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public String getMail() {

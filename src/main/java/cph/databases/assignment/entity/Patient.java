@@ -1,10 +1,6 @@
 package cph.databases.assignment.entity;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 

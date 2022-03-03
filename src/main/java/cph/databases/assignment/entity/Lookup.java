@@ -1,12 +1,8 @@
 package cph.databases.assignment.entity;
 
-import cph.databases.assignment.entity.Doctor;
-import cph.databases.assignment.entity.Patient;
-import cph.databases.assignment.entity.Pharmacist;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity

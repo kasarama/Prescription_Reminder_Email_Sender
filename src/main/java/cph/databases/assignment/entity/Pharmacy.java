@@ -13,7 +13,7 @@ public class Pharmacy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @OneToMany(mappedBy = "pharmacy", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pharmacy", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Collection<Handout> handoutList = new ArrayList<>();
     @NotNull
     private String address;
@@ -25,11 +25,6 @@ public class Pharmacy {
 
     // Constructors
     public Pharmacy() {
-    }
-
-    public Pharmacy(String address, int phone) {
-        this.address = address;
-        this.phone = phone;
     }
 
     // Getters and setters
