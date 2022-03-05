@@ -11,15 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/demo")
 public class Resource {
 
-//    final
-//    HandoutService handoutService;
-//
-//    public Resource(HandoutService handoutService) {
-//        this.handoutService = handoutService;
-//    }
-
-    @Autowired
-    HandoutService handoutService;
     @Autowired
     ReminderService reminderService;
 
@@ -35,10 +26,8 @@ public class Resource {
     }
 
     @GetMapping
-    public String handoutsOfPrescr( @RequestParam(value = "presc_id", required = false) Long id) {
-        System.out.println("PATH VARIABLE : "+ id);
-      //  reminderService.sendReminders();
-        return "Hello, world!\nPath variable is: " +id;
+    public String handoutsOfPrescr(@RequestParam(value = "name", required = false) String name) {
+        return reminderService.hello(name);
     }
 
 

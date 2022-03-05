@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Component
 public class ReminderService {
     @Autowired
     private PrescriptionRepo prescriptionRepo;
@@ -31,8 +31,8 @@ public class ReminderService {
 
 
     private void sendEmail(String toEmail,
-                          String subject,
-                          String body) {
+                           String subject,
+                           String body) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("admin@selself.com");
         message.setText(body);
@@ -42,13 +42,14 @@ public class ReminderService {
         System.out.println("mail sent successfully");
     }
 
-    public void sendReminders() {
+    public int sendReminders() {
         LocalDateTime in3days = LocalDateTime.now().plusDays(3);
         Date date = Date.from(in3days.atZone(ZoneId.systemDefault()).toInstant());
 
 
         List<Prescription> list = prescriptionRepo.findPrescriptionThatExpireBy(date);
         List<String> mail_list = new ArrayList<>();
+
         for (Prescription p : list) {
             String msg = msg(p, date);
             String email = p.getPatient().getCpr().getCi().getMail();
@@ -56,7 +57,7 @@ public class ReminderService {
             EmailLog log = new EmailLog(p.getId());
             emailLogRepo.save(log);
         }
-
+        return list.size();
     }
 
     private String msg(Prescription p, Date date) {
@@ -70,5 +71,7 @@ public class ReminderService {
         return msg;
     }
 
-
+    public String hello(String name) {
+        return "Hello, " + name + "!";
+    }
 }
