@@ -1,11 +1,9 @@
 package cph.databases.assignment.rest;
 
-import cph.databases.assignment.entity.Handout;
 import cph.databases.assignment.service.HandoutService;
+import cph.databases.assignment.service.ReminderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
-import java.util.List;
 
 
 @CrossOrigin
@@ -13,12 +11,18 @@ import java.util.List;
 @RequestMapping("/demo")
 public class Resource {
 
-    final
-    HandoutService handoutService;
+//    final
+//    HandoutService handoutService;
+//
+//    public Resource(HandoutService handoutService) {
+//        this.handoutService = handoutService;
+//    }
 
-    public Resource(HandoutService handoutService) {
-        this.handoutService = handoutService;
-    }
+    @Autowired
+    HandoutService handoutService;
+    @Autowired
+    ReminderService reminderService;
+
 
     @GetMapping("geturl")
     public String get() {
@@ -31,9 +35,10 @@ public class Resource {
     }
 
     @GetMapping
-    public List<Handout> handoutsOfPrescr(@PathParam("presc_id") Long id){
-        System.out.println("ID IS: "+id);
-        return handoutService.getHandoutsOfPrescription(id);
+    public String handoutsOfPrescr( @RequestParam(value = "presc_id", required = false) Long id) {
+        System.out.println("PATH VARIABLE : "+ id);
+      //  reminderService.sendReminders();
+        return "Hello, world!\nPath variable is: " +id;
     }
 
 

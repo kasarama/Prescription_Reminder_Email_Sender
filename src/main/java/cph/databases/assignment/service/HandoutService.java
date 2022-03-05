@@ -9,15 +9,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Component
 public class HandoutService {
     @Autowired
-    private HandoutRepo handoutRepo;
+    private   HandoutRepo handoutRepo;
+public String hello(){
+    return "HELLLOOOOOOOOOOOOOO";
+}
 
-    public List<Handout> getHandoutsOfPrescription(long prescription_id){
+
+    public  List<Handout> getHandoutsOfPrescription(long prescription_id){
         System.out.println("Searching for handouts");
         return handoutRepo.getOfPrescription(prescription_id);
 
     }
+
 
 }
